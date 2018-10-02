@@ -35,6 +35,10 @@ public class Vendor {
 		this.isPreapproved = isPreapproved;
 	}
 
+	public Vendor() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}
