@@ -23,8 +23,7 @@ public class VendorController {
 	
 	@GetMapping(path="/List")
 	public @ResponseBody Iterable<Vendor> getAllVendors() {
-			Iterable<Vendor> vendors = vendorRepository.findAll();
-			return vendors;
+			return vendorRepository.findAll();
 	}
 
 	@GetMapping(path="/Get")
