@@ -38,9 +38,9 @@ public class VendorController {
 	@GetMapping("/Get/{id}")
 	public @ResponseBody JsonResponse getVendor(@PathVariable int id) {
 		try {
-				Optional<Vendor> vendor = vendorRepository.findById(id);
-				if (vendor.isPresent())
-						return JsonResponse.getInstance(vendor.get());
+				Optional<Vendor> v = vendorRepository.findById(id);
+				if (v!=null)
+						return JsonResponse.getInstance(v);
 				else
 					return JsonResponse.getErrorInstance("Vendor not found for id: "+id, null);
 		}
@@ -50,7 +50,7 @@ public class VendorController {
 	}
 	
 	@PostMapping("/Add")
-	public @ResponseBody JsonResponse addVendor(@RequestBody Vendor vendor) {
+	public @ResponseBody JsonResponse addNewVendor(@RequestBody Vendor vendor) {
 		return saveVendor(vendor);
 	}
 	
@@ -71,7 +71,7 @@ public class VendorController {
 	}
 	
 	@PostMapping("/Remove")
-	public @ResponseBody JsonResponse removeVendor(@RequestBody Vendor vendor) {
+	public @ResponseBody JsonResponse deleteVendor(@RequestBody Vendor vendor) {
 		try {
 			vendorRepository.delete(vendor);
 			return JsonResponse.getInstance(vendor);

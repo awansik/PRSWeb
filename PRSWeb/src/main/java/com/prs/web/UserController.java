@@ -54,7 +54,11 @@ public class UserController {
 		try {
 			User u = userRepository.findByUserNameAndPassword(user.getUserName(),
 																user.getPassword());
-			return JsonResponse.getInstance(user);
+			
+			if (u!=null)
+				return JsonResponse.getInstance(u);
+			else
+				return JsonResponse.getErrorInstance("User not found.", null);
 		}
 		catch(Exception e) {
 			return JsonResponse.getErrorInstance("Error authenticating user: "+e.getMessage(), null);
